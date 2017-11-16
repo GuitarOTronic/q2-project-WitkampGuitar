@@ -10,15 +10,28 @@ function find(req, res, next) {
       )
     })
 }
+function comments(req, res, next){
 
+  model.create.comments(req.body)
+  .then(result=>{
+    res.json({result})
+  })
+}
 function createNote(req, res, next){
-  console.log('controller createNote');
-  console.log(req.body);
+
   model.create.note(req.params.id, req.body)
   .then(result =>{
     res.json(result)
   })
 }
+
+function getComments(req, res, next){
+  model.get.comments(req.params.note_id)
+  .then(result=>{
+    res.json(result)
+  })
+}
+
 
 
 function getDropdown(req, res, next){
@@ -30,6 +43,13 @@ function getDropdown(req, res, next){
     })
 }
 
+function getNote(req, res, next){
+  model.get.note(req.params.note_id)
+  .then(result=>{
+    res.json({result})
+  })
+}
+
 function put(req, res, next) {
   model.put(req.params.id, req.body).then(result => {
     res.json({
@@ -39,16 +59,35 @@ function put(req, res, next) {
 }
 
 function getStudent(req, res, next) {
-  console.log(req.params.id);
+
   model.get.student(req.params.id).then(result => {
     res.json(result)
   })
 }
 
+function destroyNote(req, res, next){
+  model.destroyNote(req.params.note_id)
+  .then(result=>{
+    res.json({result})
+  })
+}
+
+function destroyComments(req, res, next){
+  console.log('controller bleh');
+  model.destroyComments(req.params.note_id)
+  .then(result=>{
+    res.json({result})
+  })
+}
 module.exports = {
   find,
   put,
   getStudent,
   getDropdown,
-  createNote
+  createNote,
+  comments,
+  getComments,
+  getNote,
+  destroyNote,
+  destroyComments
 }

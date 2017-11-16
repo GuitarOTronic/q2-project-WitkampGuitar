@@ -11,8 +11,16 @@ let get = {
       .where('notes.student_id', id)
   },
   dropdown(){
-    console.log('popStudent');
     return knex('students')
+  },
+  comments(note_id){
+    return knex('comments')
+    .where('comments.note_id', note_id)
+  },
+  note(note_id){
+    console.log(note_id);
+    return knex('notes')
+    .where('notes.id', note_id)
   }
 }
 
@@ -21,7 +29,12 @@ let create = {
     return knex('notes')
     .where('notes.student_id', id)
     .insert({content: content.note, student_id: id})
+  },
+  comments(body){
+    return knex('comments')
+    .insert({comment:body.comment, note_id:body.note_id, student_id:body.student_id})
   }
+
   //{content: note text, student_id: student id}
 }
 function find(id) {
@@ -45,9 +58,29 @@ function put(id, body) {
     .update(body, '*')
 }
 
+function destroyNote(note_id){
+  return knex('notes')
+  .where('notes.id', note_id)
+  .del()
+  .then(result=>{
+    return result
+  })
+}
+
+function destroyComments(note_id){
+  console.log('hey model');
+  return knex('comments')
+  .where('comments.note_id', note_id)
+  .del()
+  .then(result=>{
+    return result
+  })
+}
 module.exports = {
   find,
   put,
   get,
-  create
+  create,
+  destroyNote,
+  destroyComments
 }
