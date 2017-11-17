@@ -80,10 +80,11 @@ function destroyComments(note_id){
   })
 }
 
-function editNote(id, content){
+function editNote(id, body){
+
   return knex('notes')
   .where('id', id)
-  .update({content})
+  .update({content:body.content})
 }
 module.exports = {
   find,

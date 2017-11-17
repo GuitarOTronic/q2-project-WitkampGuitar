@@ -66,7 +66,7 @@ function getStudent(req, res, next) {
 }
 
 function editNote(req, res, next){
-  console.log(req.body)
+
   model.editNote(req.params.note_id, req.body)
   .then(result=>{
     res.json(result)
