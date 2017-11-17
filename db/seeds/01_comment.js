@@ -10,7 +10,7 @@ exports.seed = function(knex, Promise) {
         {id: 3, comment: 'This is student 3 note 3 comment 3 ', student_id:13, note_id:13}
       ])
       .then(() => {
-        return knex.raw(`SELECT setval('notes_id_seq', (SELECT MAX (id) FROM notes))`)
+        return knex.raw(`SELECT setval('comments_id_seq', (SELECT MAX (id) FROM comments))`)
       })
     });
 };
