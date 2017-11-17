@@ -1,7 +1,6 @@
 const knex = require('../db/connection')
 console.log('model');
 
-
 let get = {
   all() {
     return knex('notes')

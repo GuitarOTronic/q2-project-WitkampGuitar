@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router()
 const controller = require('../controllers/controller')
-console.log('Hey fucker, router here');
+
 
 router.get('/student/:id', controller.getStudent)
 router.get('/student', controller.getDropdown)
