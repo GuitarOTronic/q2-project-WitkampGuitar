@@ -10,7 +10,7 @@ app.use(bodyParser.json())
 
 const router = require('./routes/router')
 
-app.use('/notes', router)
+app.use('/', router)
 
 
 

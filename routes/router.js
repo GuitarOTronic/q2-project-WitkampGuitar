@@ -3,14 +3,14 @@ const router = express.Router()
 const controller = require('../controllers/controller')
 
 
-router.get('/student/:id', controller.getStudent)
-router.get('/student', controller.getDropdown)
+router.get('/students/:id', controller.getStudent)
+router.get('/students', controller.getDropdown)
 router.get('/:id', controller.find)
 router.get('/notes/:note_id', controller.getNote)
 router.get(`/comments/:note_id`, controller.getComments)
 
 router.post('/comments', controller.comments)
-router.post('/student/:id', controller.createNote)
+router.post('/students/:id', controller.createNote)
 router.post('/students', controller.createStudent)
 
 router.put('/:id', controller.put)
