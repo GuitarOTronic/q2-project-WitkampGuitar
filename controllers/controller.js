@@ -65,6 +65,21 @@ function getStudent(req, res, next) {
   })
 }
 
+function editNote(req, res, next){
+  console.log(req.body)
+  model.editNote(req.params.note_id, req.body)
+  .then(result=>{
+    res.json(result)
+  })
+}
+
+function createStudent(req, res, next){
+  model.create.student(req.body)
+  .then(result=>{
+    res.json(result)
+  })
+}
+
 function destroyNote(req, res, next){
   model.destroyNote(req.params.note_id)
   .then(result=>{
@@ -73,7 +88,6 @@ function destroyNote(req, res, next){
 }
 
 function destroyComments(req, res, next){
-  console.log('controller bleh');
   model.destroyComments(req.params.note_id)
   .then(result=>{
     res.json({result})
@@ -89,5 +103,7 @@ module.exports = {
   getComments,
   getNote,
   destroyNote,
-  destroyComments
+  destroyComments,
+  createStudent,
+  editNote
 }

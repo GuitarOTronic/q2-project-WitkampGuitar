@@ -18,7 +18,6 @@ let get = {
     .where('comments.note_id', note_id)
   },
   note(note_id){
-    console.log(note_id);
     return knex('notes')
     .where('notes.id', note_id)
   }
@@ -33,9 +32,14 @@ let create = {
   comments(body){
     return knex('comments')
     .insert({comment:body.comment, note_id:body.note_id, student_id:body.student_id})
+  },
+  student(name){
+
+    return knex('students')
+    .insert({name:name.name}, '*')
+
   }
 
-  //{content: note text, student_id: student id}
 }
 function find(id) {
   // console.log('model here');
@@ -68,7 +72,6 @@ function destroyNote(note_id){
 }
 
 function destroyComments(note_id){
-  console.log('hey model');
   return knex('comments')
   .where('comments.note_id', note_id)
   .del()
@@ -76,11 +79,18 @@ function destroyComments(note_id){
     return result
   })
 }
+
+function editNote(id, content){
+  return knex('notes')
+  .where('id', id)
+  .update({content})
+}
 module.exports = {
   find,
   put,
   get,
   create,
   destroyNote,
-  destroyComments
+  destroyComments,
+  editNote
 }

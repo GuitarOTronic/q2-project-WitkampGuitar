@@ -11,9 +11,10 @@ router.get(`/comments/:note_id`, controller.getComments)
 
 router.post('/comments', controller.comments)
 router.post('/student/:id', controller.createNote)
+router.post('/students', controller.createStudent)
 
 router.put('/:id', controller.put)
-
+router.put('/notes/:note_id', controller.editNote)
 router.delete('/notes/:note_id', controller.destroyNote)
 router.delete('/comments/:note_id', controller.destroyComments)
 module.exports = router
